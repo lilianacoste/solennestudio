@@ -4,6 +4,7 @@ import type { Variants } from "framer-motion";
 import { Link } from "wouter";
 import { Card, CardContent } from "@/components/ui/card";
 import { EditorialGallery } from "@/components/editorial-gallery";
+import { SiteNav } from "@/components/site-nav";
 import { TemplateSlideshow } from "@/components/template-slideshow";
 
 const smoothEase = [0.16, 1, 0.3, 1] as const;
@@ -148,15 +149,16 @@ function AddonCard({ addon }: { addon: typeof ADDONS[0] }) {
 export default function WeddingPage() {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden selection:bg-accent selection:text-foreground">
-      {/* Nav */}
-      <nav className="fixed top-0 w-full z-50 px-6 py-6 flex justify-between items-center bg-background/80 backdrop-blur-sm border-b border-border/30">
-        <Link href="/" data-testid="link-home">
-          <span className="text-xl font-serif italic tracking-widest uppercase cursor-pointer hover:text-accent transition-colors duration-300">solennestudios</span>
-        </Link>
-        <Link href="/?inquiry=wedding#inquiry" data-testid="link-inquire">
-          <span className="text-xs tracking-widest uppercase cursor-pointer hover:text-accent transition-colors duration-300">Start Your Project</span>
-        </Link>
-      </nav>
+      <SiteNav
+        links={[
+          { label: "Preview", href: "#preview" },
+          { label: "Packages", href: "#packages" },
+          { label: "Add-ons", href: "#addons" },
+        ]}
+        ctaHref="/?inquiry=wedding#inquiry"
+        ctaLabel="Start Your Project"
+        mobileCtaLabel="Inquire"
+      />
 
       {/* Hero */}
       <section className="pt-32 pb-0 px-6">
@@ -179,7 +181,7 @@ export default function WeddingPage() {
       </section>
 
       {/* Demo Video */}
-      <section className="py-24 px-6">
+      <section id="preview" className="py-24 px-6">
         <div className="max-w-7xl mx-auto">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="mb-10 max-w-2xl">
             <p className="text-xs tracking-widest uppercase text-accent mb-4">Live Demo</p>
@@ -226,7 +228,7 @@ export default function WeddingPage() {
       </section>
 
       {/* Packages */}
-      <section className="py-32 px-6">
+      <section id="packages" className="py-32 px-6">
         <div className="max-w-7xl mx-auto">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="mb-16">
             <h2 className="text-4xl md:text-5xl font-serif italic mb-3">Choose Your Package</h2>
@@ -265,7 +267,7 @@ export default function WeddingPage() {
       </section>
 
       {/* Add-ons */}
-      <section className="py-32 px-6 bg-[#F3EFEA]">
+      <section id="addons" className="py-32 px-6 bg-[#F3EFEA]">
         <div className="max-w-5xl mx-auto">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="mb-16">
             <h2 className="text-4xl md:text-5xl font-serif italic mb-3">Popular Add-Ons</h2>
@@ -306,7 +308,7 @@ export default function WeddingPage() {
                 <Link href="/?inquiry=wedding#inquiry">
                   <button
                     data-testid="button-wedding-custom"
-                    className="text-xs tracking-widest uppercase border border-foreground/30 hover:border-accent hover:text-accent px-6 py-3 transition-colors duration-300"
+                    className="min-h-11 w-full border border-foreground/30 px-5 py-3 text-xs uppercase tracking-widest transition-colors duration-300 hover:border-accent hover:text-accent sm:w-auto sm:px-6"
                   >
                     Build My Wedding Experience
                   </button>
@@ -327,7 +329,7 @@ export default function WeddingPage() {
           <Link href="/?inquiry=wedding#inquiry">
             <button
               data-testid="button-cta-start"
-              className="text-sm tracking-widest uppercase bg-foreground text-background px-10 py-4 hover:bg-accent hover:text-foreground transition-colors duration-500"
+              className="min-h-12 w-full max-w-sm bg-foreground px-6 py-4 text-sm uppercase tracking-widest text-background transition-colors duration-500 hover:bg-accent hover:text-foreground sm:w-auto sm:px-10"
             >
               Start Your Project
             </button>

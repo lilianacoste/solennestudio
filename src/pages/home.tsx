@@ -21,6 +21,7 @@ import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
+import { SiteNav } from "@/components/site-nav";
 import { TemplateSlideshow } from "@/components/template-slideshow";
 
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mqejvrvl";
@@ -260,6 +261,41 @@ const weddingContentAssets = [
   "Venue imagery",
 ];
 
+const processSteps = [
+  {
+    number: "01",
+    title: "Discovery",
+    description:
+      "We learn about your business, audience, goals, and vision to understand exactly what success looks like.",
+  },
+  {
+    number: "02",
+    title: "Design",
+    description:
+      "We create layouts, visual direction, user flows, and interactive concepts tailored specifically to your project.",
+  },
+  {
+    number: "03",
+    title: "Build",
+    description:
+      "Your website, platform, or software solution is carefully developed with performance, scalability, and usability in mind.",
+  },
+  {
+    number: "04",
+    title: "Launch",
+    description:
+      "After testing and refinement, your project goes live with continued support and guidance when needed.",
+  },
+];
+
+const founderHighlights = [
+  "✓ Master's in Computer Science",
+  "✓ Custom Websites & Software",
+  "✓ Charlotte-Based",
+  "✓ Mobile-First Development",
+  "✓ Business Systems & Automation",
+];
+
 const formSchema = z.object({
   template: z.enum(["wedding", "hospitality", "aether", "custom-software", "custom"], {
     required_error: "Please select a template type.",
@@ -438,7 +474,6 @@ export default function Home() {
   const [showComingSoon, setShowComingSoon] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "sending" | "error">("idle");
   const [submitError, setSubmitError] = useState("");
-  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -589,8 +624,8 @@ export default function Home() {
 
   const navLinks = [
     { label: "Experiences", href: "#services" },
+    { label: "Process", href: "#process" },
     { label: "Inquire", href: "#inquiry" },
-    { label: "Admin Demo", href: "/admin" },
   ];
 
   return (
@@ -609,57 +644,16 @@ export default function Home() {
         )}
       </AnimatePresence>
 
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 px-6 py-6 mix-blend-difference text-white flex justify-between items-center">
-        <div className="text-xl font-serif italic tracking-widest uppercase">solennestudios</div>
-        <div className="hidden md:flex gap-8 text-sm tracking-widest uppercase">
-          {navLinks.map((link) => (
-            <a key={link.href} href={link.href} className="hover:text-accent transition-colors duration-300">
-              {link.label}
-            </a>
-          ))}
-        </div>
-        <button
-          type="button"
-          className="md:hidden border border-white/35 px-3 py-2 text-[11px] uppercase tracking-widest"
-          onClick={() => setIsMobileNavOpen((open) => !open)}
-          aria-expanded={isMobileNavOpen}
-          aria-label="Toggle navigation"
-        >
-          Menu
-        </button>
-      </nav>
-
-      <AnimatePresence>
-        {isMobileNavOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -12 }}
-            animate={{ opacity: 1, y: 0, transition: { duration: 0.25 } }}
-            exit={{ opacity: 0, y: -12, transition: { duration: 0.2 } }}
-            className="fixed left-4 right-4 top-20 z-[60] border border-border/60 bg-background/90 p-5 text-foreground shadow-xl backdrop-blur-md md:hidden"
-          >
-            <div className="flex flex-col gap-4 text-xs uppercase tracking-widest">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setIsMobileNavOpen(false)}
-                  className="border-b border-border/50 pb-3 hover:text-accent"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <SiteNav links={navLinks} ctaHref="#inquiry" ctaLabel="Start Your Project" mobileCtaLabel="Inquire" blend />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-6 pt-24 pb-12 overflow-hidden">
+      <section className="relative flex min-h-[100svh] items-center justify-center overflow-hidden px-6 pb-12 pt-24">
         <div className="absolute inset-0 z-0">
           <img 
             src="/hero-bg.png" 
             alt="Warm ivory editorial minimal objects" 
+            loading="eager"
+            decoding="async"
             className="w-full h-full object-cover opacity-60"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
@@ -679,18 +673,18 @@ export default function Home() {
           </motion.h1>
           <motion.p 
             variants={fadeUp}
-            className="text-lg md:text-xl text-foreground/80 max-w-2xl mx-auto mb-12 font-sans font-light tracking-wide leading-relaxed"
+            className="mx-auto mb-10 max-w-2xl text-base font-light leading-relaxed tracking-wide text-foreground/80 sm:text-lg md:mb-12 md:text-xl"
           >
             Minimal websites and interactive systems designed to feel timeless, elegant, and unforgettable.
           </motion.p>
           <motion.div 
             variants={fadeUp}
-            className="flex flex-col sm:flex-row items-center justify-center gap-6"
+            className="flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row sm:gap-6"
           >
-            <Button size="lg" variant="outline" className="border-foreground/20 hover:border-accent hover:bg-accent hover:text-foreground transition-all duration-500 w-full sm:w-auto h-14 px-8 text-sm tracking-widest uppercase rounded-none" asChild>
+            <Button size="lg" variant="outline" className="h-14 w-full max-w-sm rounded-none border-foreground/20 px-6 text-xs uppercase tracking-widest transition-all duration-500 hover:border-accent hover:bg-accent hover:text-foreground sm:w-auto sm:px-8 sm:text-sm" asChild>
               <a href="#services">Explore Templates</a>
             </Button>
-            <Button size="lg" className="bg-foreground text-background hover:bg-accent hover:text-foreground transition-all duration-500 w-full sm:w-auto h-14 px-8 text-sm tracking-widest uppercase rounded-none" asChild>
+            <Button size="lg" className="h-14 w-full max-w-sm rounded-none bg-foreground px-6 text-xs uppercase tracking-widest text-background transition-all duration-500 hover:bg-accent hover:text-foreground sm:w-auto sm:px-8 sm:text-sm" asChild>
               <a href="#inquiry">Start Your Project</a>
             </Button>
           </motion.div>
@@ -836,22 +830,22 @@ export default function Home() {
           </motion.div>
 
           <Tabs defaultValue="wedding" className="w-full">
-            <TabsList className="flex justify-center mb-16 bg-transparent border-b border-border/50 rounded-none h-auto p-0">
+            <TabsList className="mb-10 flex h-auto w-full justify-start overflow-x-auto rounded-none border-b border-border/50 bg-transparent p-0 md:mb-16 md:justify-center">
               <TabsTrigger 
                 value="wedding" 
-                className="rounded-none data-[state=active]:bg-transparent data-[state=active]:border-b-2 data-[state=active]:border-accent px-8 py-4 uppercase tracking-widest text-sm"
+                className="min-h-12 flex-shrink-0 rounded-none px-5 py-4 text-xs uppercase tracking-widest data-[state=active]:border-b-2 data-[state=active]:border-accent data-[state=active]:bg-transparent sm:px-8 sm:text-sm"
               >
                 Wedding
               </TabsTrigger>
               <TabsTrigger 
                 value="hospitality"
-                className="rounded-none data-[state=active]:bg-transparent data-[state=active]:border-b-2 data-[state=active]:border-accent px-8 py-4 uppercase tracking-widest text-sm"
+                className="min-h-12 flex-shrink-0 rounded-none px-5 py-4 text-xs uppercase tracking-widest data-[state=active]:border-b-2 data-[state=active]:border-accent data-[state=active]:bg-transparent sm:px-8 sm:text-sm"
               >
                 Hospitality
               </TabsTrigger>
               <TabsTrigger 
                 value="aether"
-                className="rounded-none data-[state=active]:bg-transparent data-[state=active]:border-b-2 data-[state=active]:border-accent px-8 py-4 uppercase tracking-widest text-sm"
+                className="min-h-12 flex-shrink-0 rounded-none px-5 py-4 text-xs uppercase tracking-widest data-[state=active]:border-b-2 data-[state=active]:border-accent data-[state=active]:bg-transparent sm:px-8 sm:text-sm"
               >
                 Aether
               </TabsTrigger>
@@ -967,7 +961,7 @@ export default function Home() {
                     <button
                       data-testid="button-wedding-custom-feature"
                       onClick={startWeddingInquiry}
-                      className="text-xs tracking-widest uppercase border border-foreground/30 hover:border-accent hover:text-accent px-6 py-3 transition-colors duration-300"
+                      className="min-h-11 w-full border border-foreground/30 px-5 py-3 text-xs uppercase tracking-widest transition-colors duration-300 hover:border-accent hover:text-accent sm:w-auto sm:px-6"
                     >
                       Build My Wedding Experience
                     </button>
@@ -1067,7 +1061,7 @@ export default function Home() {
                     </div>
                     <button
                       data-testid="button-custom-feature"
-                      className="text-xs tracking-widest uppercase border border-foreground/30 hover:border-accent hover:text-accent px-6 py-3 transition-colors duration-300"
+                      className="min-h-11 w-full border border-foreground/30 px-5 py-3 text-xs uppercase tracking-widest transition-colors duration-300 hover:border-accent hover:text-accent sm:w-auto sm:px-6"
                     >
                       Request Custom Feature
                     </button>
@@ -1144,6 +1138,119 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Our Process */}
+      <section id="process" className="relative overflow-hidden border-t border-border/50 bg-background px-6 py-32">
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
+        <div className="mx-auto max-w-7xl">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeUp}
+            className="mx-auto mb-16 max-w-3xl text-center"
+          >
+            <p className="mb-4 text-xs uppercase tracking-widest text-accent">Our Process</p>
+            <h2 className="mb-6 font-serif text-4xl italic md:text-5xl">From Idea to Launch</h2>
+            <p className="mx-auto max-w-2xl text-sm font-light leading-relaxed text-foreground/60 md:text-base">
+              Every project follows a thoughtful process designed to transform ideas into polished digital experiences.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={staggerContainer}
+            className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4"
+          >
+            {processSteps.map((step) => (
+              <motion.article
+                key={step.number}
+                variants={fadeUp}
+                className="group relative min-h-[260px] border border-border/60 bg-[#F3EFEA] p-6 transition-colors duration-500 hover:border-accent/70 hover:bg-background md:p-7"
+              >
+                <div className="mb-8 flex items-center justify-between gap-4">
+                  <span className="font-serif text-6xl italic leading-none text-accent/45 transition-colors duration-500 group-hover:text-accent md:text-7xl">
+                    {step.number}
+                  </span>
+                  <span className="h-px flex-1 bg-gradient-to-r from-accent/60 to-transparent" />
+                </div>
+                <h3 className="mb-4 font-serif text-2xl italic">{step.title}</h3>
+                <p className="text-sm font-light leading-relaxed text-foreground/60">{step.description}</p>
+              </motion.article>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* About the Founder */}
+      <section className="border-t border-border/50 bg-[#F3EFEA] px-6 py-32">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeUp}
+            className="relative"
+          >
+            <div className="absolute -left-4 -top-4 h-24 w-24 border-l border-t border-accent/60" />
+            <div className="absolute -bottom-4 -right-4 h-24 w-24 border-b border-r border-accent/60" />
+            <div className="relative aspect-[4/5] overflow-hidden border border-border/60 bg-[#10100d]">
+              <img
+                src="/solennestudio.png"
+                alt="Solenne Studio brand mark"
+                loading="lazy"
+                decoding="async"
+                className="h-full w-full object-cover opacity-90"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeUp}
+          >
+            <p className="mb-4 text-xs uppercase tracking-widest text-accent">Meet the Founder</p>
+            <h2 className="mb-3 font-serif text-4xl italic md:text-5xl">Liliana Coste</h2>
+            <p className="mb-8 text-xs uppercase tracking-widest text-foreground/45">Founder & Developer</p>
+
+            <div className="space-y-5 text-sm font-light leading-relaxed text-foreground/65 md:text-base">
+              <p>I founded Solenne Studios to combine thoughtful design with practical software development.</p>
+              <p>
+                After earning my Master's degree in Computer Science, I began building custom websites, digital experiences, and business systems that help organizations present themselves professionally and operate more effectively.
+              </p>
+              <p>
+                My background spans full-stack development, automation, data systems, interactive experiences, and user-focused design. Whether it's a wedding venue, hospitality brand, startup, or custom software solution, my goal is always the same: create digital products that feel intentional, polished, and memorable.
+              </p>
+              <p>
+                Every project is approached with a focus on quality, usability, and long-term value rather than one-size-fits-all templates.
+              </p>
+            </div>
+
+            <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {founderHighlights.map((highlight) => (
+                <div
+                  key={highlight}
+                  className="border border-border/60 bg-background/70 px-4 py-3 text-sm font-light text-foreground/70"
+                >
+                  {highlight}
+                </div>
+              ))}
+            </div>
+
+            <a
+              href="#inquiry"
+              className="mt-10 inline-flex min-h-12 w-full items-center justify-center bg-foreground px-8 text-xs uppercase tracking-widest text-background transition-colors duration-500 hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent sm:w-auto"
+            >
+              Start Your Project
+            </a>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Inquiry Form */}
       <section id="inquiry" className="py-32 px-6">
         <div className="max-w-3xl mx-auto">
@@ -1172,7 +1279,7 @@ export default function Home() {
             </motion.div>
           ) : (
             <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 border border-border/50 p-8 md:p-16 bg-[#F3EFEA]">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 border border-border/50 bg-[#F3EFEA] p-5 sm:p-8 md:p-16">
                 {selectedTemplate && (
                   <div className="border border-accent/30 bg-background/60 px-4 py-3 text-xs uppercase tracking-widest text-foreground/60">
                     Selected inquiry: <span className="text-accent">{selectedTemplate === "custom-software" ? "Custom Software" : selectedTemplate}</span>
@@ -1187,12 +1294,12 @@ export default function Home() {
                 )}
                 
                 {/* Step Indicators */}
-                <div className="flex justify-between items-center mb-12 relative">
+                <div className="relative mb-10 flex items-center justify-between gap-2 sm:mb-12">
                   <div className="absolute left-0 right-0 top-1/2 h-[1px] bg-border/50 -z-10" />
                   {Array.from({ length: totalFormSteps }, (_, index) => index + 1).map((step) => (
                     <div 
                       key={step}
-                      className={`w-8 h-8 flex items-center justify-center text-xs rounded-full border bg-background transition-colors duration-500
+                      className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border bg-background text-xs transition-colors duration-500
                         ${formStep >= step ? 'border-accent text-accent' : 'border-border text-foreground/30'}
                         ${formStep === step ? 'ring-4 ring-accent/20' : ''}
                       `}
@@ -2502,52 +2609,52 @@ export default function Home() {
                   )}
                 </AnimatePresence>
 
-                <div className="flex justify-between pt-8 border-t border-border/50">
+                <div className="flex flex-col-reverse gap-3 border-t border-border/50 pt-8 sm:flex-row sm:justify-between">
                   {formStep > 1 ? (
                     <Button 
                       type="button" 
                       variant="outline" 
                       onClick={prevStep}
-                      className="rounded-none border-foreground/20 hover:border-accent hover:text-accent font-light tracking-widest uppercase text-xs h-12 px-8"
+                      className="h-12 w-full rounded-none border-foreground/20 px-6 text-xs font-light uppercase tracking-widest hover:border-accent hover:text-accent sm:w-auto sm:px-8"
                     >
                       Back
                     </Button>
-                  ) : <div></div>}
+                  ) : <div className="hidden sm:block"></div>}
                   
                   {formStep < totalFormSteps ? (
                     <Button 
                       type="button" 
                       onClick={nextStep}
-                      className="rounded-none bg-foreground text-background hover:bg-accent h-12 px-8 font-light tracking-widest uppercase text-xs"
+                      className="h-12 w-full rounded-none bg-foreground px-6 text-xs font-light uppercase tracking-widest text-background hover:bg-accent sm:w-auto sm:px-8"
                     >
                       Continue
                     </Button>
                   ) : (
-                    <div className="flex flex-col items-end gap-3">
+                    <div className="flex w-full flex-col gap-3 sm:w-auto sm:items-end">
                       <Button 
                         type="submit"
                         disabled={isSending}
-                        className="rounded-none bg-foreground text-background hover:bg-accent h-12 px-8 font-light tracking-widest uppercase text-xs"
+                        className="h-12 w-full rounded-none bg-foreground px-6 text-xs font-light uppercase tracking-widest text-background hover:bg-accent sm:w-auto sm:px-8"
                       >
                         {isSending ? "Sending..." : selectedTemplate === "custom-software" ? "Start Software Inquiry \u2192" : selectedTemplate === "hospitality" ? "Submit Hospitality Inquiry \u2192" : selectedTemplate === "wedding" ? "Submit Wedding Inquiry \u2192" : selectedTemplate === "custom" ? "Begin Project Inquiry \u2192" : "Submit Inquiry"}
                       </Button>
                       {selectedTemplate === "custom" && (
-                        <p className="max-w-sm text-right text-xs text-foreground/45 font-light">
+                        <p className="max-w-sm text-left text-xs font-light text-foreground/45 sm:text-right">
                           Free revisions, collaborative updates, and personalized creative direction included with every project.
                         </p>
                       )}
                       {selectedTemplate === "custom-software" && (
-                        <p className="max-w-sm text-right text-xs text-foreground/45 font-light">
+                        <p className="max-w-sm text-left text-xs font-light text-foreground/45 sm:text-right">
                           Every project is built specifically around your workflow, goals, and operational needs.
                         </p>
                       )}
                       {selectedTemplate === "hospitality" && (
-                        <p className="max-w-sm text-right text-xs text-foreground/45 font-light">
+                        <p className="max-w-sm text-left text-xs font-light text-foreground/45 sm:text-right">
                           Premium hospitality websites are shaped around atmosphere, guest experience, and operational clarity.
                         </p>
                       )}
                       {selectedTemplate === "wedding" && (
-                        <p className="max-w-sm text-right text-xs text-foreground/45 font-light">
+                        <p className="max-w-sm text-left text-xs font-light text-foreground/45 sm:text-right">
                           Your wedding website is shaped around your celebration, guests, and the feeling of the weekend.
                         </p>
                       )}
@@ -2564,13 +2671,13 @@ export default function Home() {
       {/* Footer */}
       <footer className="py-16 px-6 border-t border-border/50 text-center">
         <h2 className="text-3xl font-serif italic mb-6">solennestudios</h2>
-        <div className="flex justify-center gap-8 text-xs tracking-widest uppercase font-light text-foreground/50 mb-8">
+        <div className="mb-8 flex flex-col items-center justify-center gap-3 text-xs uppercase tracking-widest text-foreground/50 sm:flex-row sm:gap-8">
           {["Instagram", "Pinterest", "Contact"].map((label) => (
             <button
               key={label}
               type="button"
               onClick={openComingSoon}
-              className="hover:text-accent transition-colors"
+              className="min-h-11 px-3 transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             >
               {label}
             </button>

@@ -4,6 +4,7 @@ import type { Variants } from "framer-motion";
 import { Link } from "wouter";
 import { Card, CardContent } from "@/components/ui/card";
 import { EditorialGallery } from "@/components/editorial-gallery";
+import { SiteNav } from "@/components/site-nav";
 import { TemplateSlideshow } from "@/components/template-slideshow";
 
 const smoothEase = [0.16, 1, 0.3, 1] as const;
@@ -94,14 +95,18 @@ function AddonCard({ addon }: { addon: typeof ADDONS[0] }) {
 export default function AetherPage() {
   return (
     <div className="min-h-screen bg-[#070707] text-white overflow-x-hidden selection:bg-accent selection:text-foreground">
-      <nav className="fixed top-0 w-full z-50 px-6 py-6 flex justify-between items-center bg-[#070707]/80 backdrop-blur-sm border-b border-white/10">
-        <Link href="/" data-testid="link-home">
-          <span className="text-xl tracking-[0.25em] uppercase cursor-pointer hover:text-accent transition-colors duration-300">Aether</span>
-        </Link>
-        <Link href="/?inquiry=aether#inquiry" data-testid="link-inquire">
-          <span className="text-xs tracking-widest uppercase cursor-pointer hover:text-accent transition-colors duration-300">Start Your Project</span>
-        </Link>
-      </nav>
+      <SiteNav
+        brand="Aether"
+        links={[
+          { label: "System", href: "#system" },
+          { label: "Packages", href: "#packages" },
+          { label: "Add-ons", href: "#addons" },
+        ]}
+        ctaHref="/?inquiry=aether#inquiry"
+        ctaLabel="Start Your Project"
+        mobileCtaLabel="Inquire"
+        dark
+      />
 
       <section className="relative pt-32 pb-0 px-6 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.12),transparent_35%)]" />
@@ -123,7 +128,7 @@ export default function AetherPage() {
         </div>
       </section>
 
-      <section className="py-24 px-6">
+      <section id="system" className="py-24 px-6">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
             ["Live Operations", "A real-time operational layer monitoring global infrastructure, active systems, and synchronized deployments."],
@@ -160,7 +165,7 @@ export default function AetherPage() {
         </div>
       </section>
 
-      <section className="py-32 px-6">
+      <section id="packages" className="py-32 px-6">
         <div className="max-w-7xl mx-auto">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="mb-16">
             <h2 className="text-4xl md:text-5xl font-serif italic mb-3">Choose Your Package</h2>
@@ -198,7 +203,7 @@ export default function AetherPage() {
         </div>
       </section>
 
-      <section className="py-32 px-6 bg-[#0d0d0d]">
+      <section id="addons" className="py-32 px-6 bg-[#0d0d0d]">
         <div className="max-w-5xl mx-auto">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="mb-16">
             <h2 className="text-4xl md:text-5xl font-serif italic mb-3">Optional Add-Ons</h2>
@@ -228,7 +233,7 @@ export default function AetherPage() {
           <Link href="/?inquiry=aether#inquiry">
             <button
               data-testid="button-cta-start"
-              className="text-sm tracking-widest uppercase bg-white text-[#070707] px-10 py-4 hover:bg-accent hover:text-foreground transition-colors duration-500"
+              className="min-h-12 w-full max-w-sm bg-white px-6 py-4 text-sm uppercase tracking-widest text-[#070707] transition-colors duration-500 hover:bg-accent hover:text-foreground sm:w-auto sm:px-10"
             >
               Start Your Project
             </button>

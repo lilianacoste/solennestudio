@@ -126,10 +126,148 @@
   * {
     @apply border-border;
   }
+  html {
+    scroll-padding-top: 5rem;
+  }
+  html,
+  body,
+  #root {
+    min-width: 0;
+    overflow-x: hidden;
+  }
+  img,
+  video,
+  canvas,
+  svg {
+    max-width: 100%;
+  }
+  input,
+  textarea,
+  select,
+  button {
+    font: inherit;
+  }
   body {
     @apply font-sans antialiased bg-background text-foreground;
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif italic;
+  }
+}
+
+@media (max-width: 767px) {
+  section,
+  footer {
+    scroll-margin-top: 5rem;
+  }
+
+  .px-6 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  .py-32 {
+    padding-top: 5rem !important;
+    padding-bottom: 5rem !important;
+  }
+
+  .py-24 {
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+  }
+
+  .pt-32 {
+    padding-top: 6.5rem !important;
+  }
+
+  .mb-16 {
+    margin-bottom: 2.5rem !important;
+  }
+
+  .gap-12 {
+    gap: 2rem !important;
+  }
+
+  .grid-cols-2 {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .flex.justify-between.items-start {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .p-8 {
+    padding: 1.25rem !important;
+  }
+
+  .text-7xl {
+    font-size: clamp(3.25rem, 18vw, 4.5rem) !important;
+    line-height: 0.95 !important;
+  }
+
+  .text-5xl {
+    font-size: clamp(2.65rem, 14vw, 3.75rem) !important;
+    line-height: 0.98 !important;
+  }
+
+  .text-4xl {
+    font-size: clamp(2.2rem, 11vw, 3rem) !important;
+    line-height: 1.05 !important;
+  }
+
+  .text-3xl {
+    font-size: clamp(1.85rem, 9vw, 2.35rem) !important;
+    line-height: 1.08 !important;
+  }
+
+  .tracking-widest,
+  .tracking-\[0\.25em\],
+  .tracking-\[0\.3em\],
+  .tracking-\[0\.35em\] {
+    letter-spacing: 0.14em !important;
+  }
+
+  .aspect-\[21\/9\] {
+    aspect-ratio: 4 / 3 !important;
+    min-height: 240px;
+  }
+
+  button,
+  [role="button"],
+  input,
+  textarea,
+  select,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  input,
+  select,
+  textarea {
+    min-height: 3rem;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 380px) {
+  .text-7xl,
+  .text-5xl {
+    font-size: clamp(2.45rem, 15vw, 3.2rem) !important;
+  }
+
+  .text-xs {
+    font-size: 0.72rem !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
 }

@@ -19,6 +19,9 @@ export function TemplateSlideshow({ images, title }: { images: string[]; title: 
           key={current}
           src={images[current]}
           alt={`${title} ${current + 1}`}
+          loading={current === 0 ? "eager" : "lazy"}
+          decoding="async"
+          sizes="(max-width: 767px) 100vw, (max-width: 1279px) 90vw, 1280px"
           custom={direction}
           variants={{
             enter: (d: number) => ({ opacity: 0, x: d * 40 }),
@@ -28,14 +31,14 @@ export function TemplateSlideshow({ images, title }: { images: string[]; title: 
           initial="enter"
           animate="center"
           exit="exit"
-          className="absolute inset-0 w-full h-full object-contain"
+          className="absolute inset-0 h-full w-full object-contain"
         />
       </AnimatePresence>
 
       <button
         data-testid={`btn-prev-${title}`}
         onClick={() => go(current - 1, -1)}
-        className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 flex items-center justify-center bg-background/70 backdrop-blur-sm border border-border/40 opacity-0 group-hover/slide:opacity-100 transition-opacity duration-300 hover:bg-background hover:border-accent"
+        className="absolute left-3 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center border border-border/40 bg-background/75 opacity-100 backdrop-blur-sm transition-opacity duration-300 hover:border-accent hover:bg-background md:h-9 md:w-9 md:opacity-0 md:group-hover/slide:opacity-100"
         aria-label="Previous image"
       >
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -45,7 +48,7 @@ export function TemplateSlideshow({ images, title }: { images: string[]; title: 
       <button
         data-testid={`btn-next-${title}`}
         onClick={() => go(current + 1, 1)}
-        className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 flex items-center justify-center bg-background/70 backdrop-blur-sm border border-border/40 opacity-0 group-hover/slide:opacity-100 transition-opacity duration-300 hover:bg-background hover:border-accent"
+        className="absolute right-3 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center border border-border/40 bg-background/75 opacity-100 backdrop-blur-sm transition-opacity duration-300 hover:border-accent hover:bg-background md:h-9 md:w-9 md:opacity-0 md:group-hover/slide:opacity-100"
         aria-label="Next image"
       >
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -59,7 +62,7 @@ export function TemplateSlideshow({ images, title }: { images: string[]; title: 
             key={i}
             data-testid={`dot-${title}-${i}`}
             onClick={() => go(i, i > current ? 1 : -1)}
-            className={`rounded-full transition-all duration-400 ${i === current ? "w-4 h-1.5 bg-background" : "w-1.5 h-1.5 bg-background/50"}`}
+            className={`min-h-4 min-w-4 rounded-full transition-all duration-400 ${i === current ? "h-1.5 w-5 bg-background" : "h-1.5 w-4 bg-background/50"}`}
             aria-label={`Go to image ${i + 1}`}
           />
         ))}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 export type EditorialGalleryImage = {
@@ -17,12 +17,23 @@ export function EditorialGallery({
 }) {
   const [selectedImage, setSelectedImage] = useState<EditorialGalleryImage | null>(null);
 
+  useEffect(() => {
+    if (!selectedImage) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setSelectedImage(null);
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedImage]);
+
   return (
     <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 auto-rows-[320px] gap-x-6 gap-y-12">
+      <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 md:grid-cols-3 md:auto-rows-[320px] md:gap-y-12">
         {images.map((image, i) => (
           (() => {
-            const imageHeight = image.span?.includes("row-span-2") ? "h-[592px]" : "h-[250px]";
+            const imageHeight = image.span?.includes("row-span-2") ? "h-[320px] md:h-[592px]" : "h-[250px]";
 
             return (
           <motion.figure
@@ -44,6 +55,8 @@ export function EditorialGallery({
                   src={image.src}
                   alt={`${image.title} screenshot`}
                   loading="lazy"
+                  decoding="async"
+                  sizes="(max-width: 639px) 100vw, (max-width: 767px) 50vw, 33vw"
                   className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]"
                 />
               </div>
@@ -66,7 +79,7 @@ export function EditorialGallery({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-6 backdrop-blur-md"
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-3 backdrop-blur-md sm:p-6"
             onClick={() => setSelectedImage(null)}
           >
             <motion.div
@@ -80,10 +93,10 @@ export function EditorialGallery({
               <img
                 src={selectedImage.src}
                 alt={`${selectedImage.title} enlarged screenshot`}
-                className="max-h-[82vh] w-full rounded-md object-contain"
+                className="max-h-[72dvh] w-full rounded-md object-contain sm:max-h-[82vh]"
               />
 
-              <div className="flex items-center justify-between gap-6 pt-5">
+              <div className="flex flex-col gap-4 pt-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
                 <div>
                   <p className="text-xs uppercase tracking-[0.3em] text-white/50">{selectedImage.category}</p>
                   <h2 className="font-serif text-2xl italic text-white">{selectedImage.title}</h2>
@@ -91,7 +104,7 @@ export function EditorialGallery({
 
                 <button
                   type="button"
-                  className="text-sm uppercase tracking-[0.2em] text-white/60 transition-colors hover:text-white"
+                  className="min-h-11 border border-white/15 px-4 text-sm uppercase tracking-[0.2em] text-white/60 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
                   onClick={() => setSelectedImage(null)}
                 >
                   Close

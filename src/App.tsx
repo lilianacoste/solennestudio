@@ -8,7 +8,6 @@ import WeddingPage from "@/pages/wedding";
 import HospitalityPage from "@/pages/hospitality";
 import AetherPage from "@/pages/aether";
 import CustomSoftwarePage from "@/pages/custom-software";
-import AdminPage from "@/pages/admin";
 
 const queryClient = new QueryClient();
 
@@ -20,7 +19,6 @@ function Router() {
       <Route path="/hospitality" component={HospitalityPage} />
       <Route path="/aether" component={AetherPage} />
       <Route path="/custom-software" component={CustomSoftwarePage} />
-      <Route path="/admin" component={AdminPage} />
       <Route component={NotFound} />
     </Switch>
   );

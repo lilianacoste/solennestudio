@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { Link } from "wouter";
 import { Card, CardContent } from "@/components/ui/card";
+import { SiteNav } from "@/components/site-nav";
 import { TemplateSlideshow } from "@/components/template-slideshow";
 
 const smoothEase = [0.16, 1, 0.3, 1] as const;
@@ -71,14 +72,16 @@ const SYSTEM_AREAS = ["Systems", "Workflows", "Operations", "Automation", "Infra
 export default function CustomSoftwarePage() {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden selection:bg-accent selection:text-foreground">
-      <nav className="fixed top-0 w-full z-50 px-6 py-6 flex justify-between items-center bg-background/80 backdrop-blur-sm border-b border-border/30">
-        <Link href="/" data-testid="link-home">
-          <span className="text-xl font-serif italic tracking-widest uppercase cursor-pointer hover:text-accent transition-colors duration-300">solennestudios</span>
-        </Link>
-        <Link href="/?inquiry=software#inquiry" data-testid="link-inquire">
-          <span className="text-xs tracking-widest uppercase cursor-pointer hover:text-accent transition-colors duration-300">Start Software Inquiry</span>
-        </Link>
-      </nav>
+      <SiteNav
+        links={[
+          { label: "Studio", href: "#studio" },
+          { label: "Stack", href: "#stack" },
+          { label: "Features", href: "#features" },
+        ]}
+        ctaHref="/?inquiry=software#inquiry"
+        ctaLabel="Start Software Inquiry"
+        mobileCtaLabel="Inquire"
+      />
 
       <section className="pt-32 pb-0 px-6">
         <div className="max-w-7xl mx-auto">
@@ -100,7 +103,7 @@ export default function CustomSoftwarePage() {
         </div>
       </section>
 
-      <section className="py-24 px-6">
+      <section id="studio" className="py-24 px-6">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-[1fr_0.8fr] gap-10 items-start">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
             <h2 className="text-4xl md:text-5xl font-serif italic mb-6">Digital systems studio</h2>
@@ -137,7 +140,7 @@ export default function CustomSoftwarePage() {
         </div>
       </section>
 
-      <section className="py-24 px-6 bg-[#F3EFEA]">
+      <section id="stack" className="py-24 px-6 bg-[#F3EFEA]">
         <div className="max-w-7xl mx-auto">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="mb-12 max-w-2xl">
             <p className="text-xs tracking-widest uppercase text-accent mb-4">Preferred Language / Stack</p>
@@ -186,7 +189,7 @@ export default function CustomSoftwarePage() {
         </div>
       </section>
 
-      <section className="py-24 px-6 bg-[#F3EFEA]">
+      <section id="features" className="py-24 px-6 bg-[#F3EFEA]">
         <div className="max-w-7xl mx-auto">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="mb-12 max-w-2xl">
             <p className="text-xs tracking-widest uppercase text-accent mb-4">Possible Features</p>
@@ -222,7 +225,7 @@ export default function CustomSoftwarePage() {
           <Link href="/?inquiry=software#inquiry">
             <button
               data-testid="button-start-software-inquiry"
-              className="text-sm tracking-widest uppercase bg-foreground text-background px-10 py-4 hover:bg-accent hover:text-foreground transition-colors duration-500"
+              className="min-h-12 w-full max-w-sm bg-foreground px-6 py-4 text-sm uppercase tracking-widest text-background transition-colors duration-500 hover:bg-accent hover:text-foreground sm:w-auto sm:px-10"
             >
               Start Software Inquiry →
             </button>
