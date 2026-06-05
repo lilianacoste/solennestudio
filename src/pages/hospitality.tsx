@@ -286,7 +286,7 @@ export default function HospitalityPage() {
       {/* Footer */}
       <footer className="py-10 px-6 border-t border-border/30 text-center">
         <Link href="/">
-          <span className="text-sm font-serif italic tracking-widest uppercase text-foreground/40 hover:text-foreground transition-colors duration-300 cursor-pointer">solennestudios</span>
+          <span className="text-sm font-serif italic tracking-widest uppercase text-foreground/40 hover:text-foreground transition-colors duration-300 cursor-pointer">Solenne Systems</span>
         </Link>
       </footer>
     </div>

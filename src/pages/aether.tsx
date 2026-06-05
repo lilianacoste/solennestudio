@@ -243,7 +243,7 @@ export default function AetherPage() {
 
       <footer className="py-10 px-6 border-t border-white/10 text-center">
         <Link href="/">
-          <span className="text-sm tracking-[0.25em] uppercase text-white/40 hover:text-white transition-colors duration-300 cursor-pointer">solennestudios</span>
+          <span className="text-sm tracking-[0.25em] uppercase text-white/40 hover:text-white transition-colors duration-300 cursor-pointer">Solenne Systems</span>
         </Link>
       </footer>
     </div>

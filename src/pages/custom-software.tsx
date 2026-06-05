@@ -15,37 +15,51 @@ const fadeUp: Variants = {
 
 const IMAGES = ["/custom-2.png", "/Aether/liveoperations.png", "/custom-3.png"];
 
-const STACKS = [
+const SOLUTIONS = [
+  "Lead Generation Systems",
+  "Appointment Booking Systems",
+  "Customer Management Tools",
+  "Inventory Tracking Software",
+  "Business Dashboards",
+  "Automated Reporting",
+  "AI-Powered Workflows",
+  "Email & CRM Automation",
+  "Internal Company Tools",
+  "Custom Business Software",
+  "Web Applications",
+  "Desktop Applications",
+];
+
+const AUTOMATION_PROJECTS = [
+  "Website Lead Finder",
+  "Competitor Monitoring",
+  "Quote Generation",
+  "Invoice Automation",
+  "PDF / Report Generation",
+  "Excel & CSV Processing",
+  "Email Workflow Automation",
+  "Customer Follow-Up Systems",
+  "Data Scraping & Aggregation",
+  "Appointment Reminders",
+];
+
+const AI_SOLUTIONS = [
+  "AI Chat Assistants",
+  "Knowledge Base Search",
+  "Customer Support Automation",
+  "Document Processing",
+  "Content Generation Workflows",
+];
+
+const TECHNOLOGIES = [
   "Python",
-  "JavaScript / TypeScript",
   "React",
-  "Node.js",
+  "TypeScript",
   "SQL",
   "C#",
   "Java",
-  "C++",
-  "Lua",
-  "Automation / No Preference",
-  "Need Guidance",
-];
-
-const PROJECT_TYPES = [
-  "Automation Script",
-  "Internal Tool",
-  "Dashboard",
-  "File Management System",
-  "Data Processing Tool",
-  "AI Workflow",
-  "Web Application",
-  "Desktop Application",
-  "Utility Program",
-  "Monitoring System",
-  "CRM / Management System",
-  "Booking System",
-  "API Integration",
-  "Realtime System",
-  "Experimental / Creative Tool",
-  "Other Custom Project",
+  "API Integrations",
+  "Cloud Deployment",
 ];
 
 const FEATURES = [
@@ -75,7 +89,8 @@ export default function CustomSoftwarePage() {
       <SiteNav
         links={[
           { label: "Studio", href: "#studio" },
-          { label: "Stack", href: "#stack" },
+          { label: "Solutions", href: "#solutions" },
+          { label: "Automation", href: "#automation" },
           { label: "Features", href: "#features" },
         ]}
         ctaHref="/?inquiry=software#inquiry"
@@ -126,13 +141,13 @@ export default function CustomSoftwarePage() {
           >
             <Card className="rounded-none border-0 bg-foreground text-background shadow-none">
               <CardContent className="p-8">
-                <span className="text-xs tracking-widest uppercase text-accent mb-2 block">Starting at</span>
+                <span className="text-xs tracking-widest uppercase text-accent mb-2 block">Custom Quote</span>
                 <div className="flex items-start justify-between gap-6 mb-4">
-                  <h3 className="text-3xl font-serif italic">Custom Programs & Software</h3>
-                  <span className="text-3xl font-serif italic">$120+</span>
+                  <h3 className="text-3xl font-serif italic">Custom Software Solutions</h3>
+                  <span className="text-3xl font-serif italic">Scoped</span>
                 </div>
                 <p className="text-sm text-background/70 font-light leading-relaxed">
-                  Bespoke software and utility systems designed to simplify processes, automate repetitive work, and create tailored digital experiences.
+                  Bespoke software, automation, and internal tools priced around project scope, complexity, integrations, and long-term business value.
                 </p>
               </CardContent>
             </Card>
@@ -140,49 +155,104 @@ export default function CustomSoftwarePage() {
         </div>
       </section>
 
-      <section id="stack" className="py-24 px-6 bg-[#F3EFEA]">
+      <section id="solutions" className="py-24 px-6 bg-[#F3EFEA]">
         <div className="max-w-7xl mx-auto">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="mb-12 max-w-2xl">
-            <p className="text-xs tracking-widest uppercase text-accent mb-4">Preferred Language / Stack</p>
-            <h2 className="text-4xl md:text-5xl font-serif italic mb-4">Choose the right foundation</h2>
+            <p className="text-xs tracking-widest uppercase text-accent mb-4">Business Solutions</p>
+            <h2 className="text-4xl md:text-5xl font-serif italic mb-4">What can I build for you?</h2>
             <p className="text-foreground/60 font-light leading-relaxed">
-              Bring a preferred technology stack, choose no preference, or ask for guidance.
+              Practical systems designed around outcomes: more leads, cleaner operations, faster reporting, and better customer workflows.
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {STACKS.map((stack, i) => (
+            {SOLUTIONS.map((solution, i) => (
               <motion.div
-                key={stack}
+                key={solution}
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0, transition: { duration: 0.45, delay: Math.min(i * 0.035, 0.25) } }}
                 viewport={{ once: true }}
                 className="border border-border/60 bg-background px-5 py-4 text-sm text-foreground/70 transition-colors duration-300 hover:border-accent hover:text-accent"
               >
-                {stack}
+                {solution}
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-24 px-6">
+      <section id="automation" className="py-24 px-6">
         <div className="max-w-7xl mx-auto">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="mb-12 max-w-2xl">
-            <p className="text-xs tracking-widest uppercase text-accent mb-4">Project Type</p>
-            <h2 className="text-4xl md:text-5xl font-serif italic mb-4">What are you looking to build?</h2>
+            <p className="text-xs tracking-widest uppercase text-accent mb-4">Popular Automation Projects</p>
+            <h2 className="text-4xl md:text-5xl font-serif italic mb-4">Remove the repetitive work</h2>
+            <p className="text-foreground/60 font-light leading-relaxed">
+              Automations can help you find leads, generate documents, process data, monitor competitors, and follow up with customers without manual busywork.
+            </p>
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {PROJECT_TYPES.map((type, i) => (
+            {AUTOMATION_PROJECTS.map((project, i) => (
               <motion.div
-                key={type}
+                key={project}
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0, transition: { duration: 0.45, delay: Math.min(i * 0.025, 0.25) } }}
                 viewport={{ once: true }}
                 className="border border-border/50 bg-transparent p-5 text-sm text-foreground/65"
               >
-                {type}
+                {project}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24 px-6 bg-background">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-10 items-start">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
+            <p className="text-xs tracking-widest uppercase text-accent mb-4">AI Solutions</p>
+            <h2 className="text-4xl md:text-5xl font-serif italic mb-4">AI that supports real workflows</h2>
+            <p className="text-foreground/60 font-light leading-relaxed">
+              Add AI where it makes the business more efficient: customer support, internal search, document handling, and content workflows.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {AI_SOLUTIONS.map((solution, i) => (
+              <motion.div
+                key={solution}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0, transition: { duration: 0.45, delay: Math.min(i * 0.045, 0.25) } }}
+                viewport={{ once: true }}
+                className="border border-border/50 bg-[#F3EFEA] p-5 text-sm text-foreground/65"
+              >
+                {solution}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24 px-6 bg-[#F3EFEA]">
+        <div className="max-w-7xl mx-auto">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="mb-12 max-w-2xl">
+            <p className="text-xs tracking-widest uppercase text-accent mb-4">Built With Modern Technologies</p>
+            <h2 className="text-4xl md:text-5xl font-serif italic mb-4">Technical foundations, handled for you</h2>
+            <p className="text-foreground/60 font-light leading-relaxed">
+              Business goals come first. The technology is selected to fit the workflow, deployment needs, integrations, and long-term maintenance plan.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {TECHNOLOGIES.map((technology, i) => (
+              <motion.div
+                key={technology}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0, transition: { duration: 0.45, delay: Math.min(i * 0.035, 0.25) } }}
+                viewport={{ once: true }}
+                className="border border-border/60 bg-background px-5 py-4 text-sm text-foreground/70 transition-colors duration-300 hover:border-accent hover:text-accent"
+              >
+                {technology}
               </motion.div>
             ))}
           </div>
@@ -235,7 +305,7 @@ export default function CustomSoftwarePage() {
 
       <footer className="py-10 px-6 border-t border-border/30 text-center">
         <Link href="/">
-          <span className="text-sm font-serif italic tracking-widest uppercase text-foreground/40 hover:text-foreground transition-colors duration-300 cursor-pointer">solennestudios</span>
+          <span className="text-sm font-serif italic tracking-widest uppercase text-foreground/40 hover:text-foreground transition-colors duration-300 cursor-pointer">Solenne Systems</span>
         </Link>
       </footer>
     </div>

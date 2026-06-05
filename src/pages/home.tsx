@@ -554,7 +554,7 @@ export default function Home() {
 
     try {
       const formData = new FormData();
-      formData.append("_subject", `New ${data.template} inquiry from solennestudios`);
+      formData.append("_subject", `New ${data.template} inquiry from Solenne Systems`);
       formData.append("template", data.template);
       formData.append("name", contact.name ?? "");
       formData.append("email", contact.email ?? "");
@@ -1198,7 +1198,7 @@ export default function Home() {
             <div className="relative aspect-[4/5] overflow-hidden border border-border/60 bg-[#10100d]">
               <img
                 src="/solennestudio.png"
-                alt="Solenne Studio brand mark"
+                alt="Solenne Systems brand mark"
                 loading="lazy"
                 decoding="async"
                 className="h-full w-full object-cover opacity-90"
@@ -1218,7 +1218,7 @@ export default function Home() {
             <p className="mb-8 text-xs uppercase tracking-widest text-foreground/45">Founder & Developer</p>
 
             <div className="space-y-5 text-sm font-light leading-relaxed text-foreground/65 md:text-base">
-              <p>I founded Solenne Studios to combine thoughtful design with practical software development.</p>
+              <p>I founded Solenne Systems to combine thoughtful design with practical software development.</p>
               <p>
                 After earning my Master's degree in Computer Science, I began building custom websites, digital experiences, and business systems that help organizations present themselves professionally and operate more effectively.
               </p>
@@ -2670,7 +2670,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="py-16 px-6 border-t border-border/50 text-center">
-        <h2 className="text-3xl font-serif italic mb-6">solennestudios</h2>
+        <h2 className="text-3xl font-serif italic mb-6">Solenne Systems</h2>
         <div className="mb-8 flex flex-col items-center justify-center gap-3 text-xs uppercase tracking-widest text-foreground/50 sm:flex-row sm:gap-8">
           {["Instagram", "Pinterest", "Contact"].map((label) => (
             <button
@@ -2683,7 +2683,7 @@ export default function Home() {
             </button>
           ))}
         </div>
-        <p className="text-xs text-foreground/30 font-light">&copy; {new Date().getFullYear()} solennestudios. All rights reserved.</p>
+        <p className="text-xs text-foreground/30 font-light">&copy; {new Date().getFullYear()} Solenne Systems. All rights reserved.</p>
       </footer>
     </div>
   );

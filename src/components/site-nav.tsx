@@ -47,7 +47,7 @@ function NavAnchor({
 }
 
 export function SiteNav({
-  brand = "solennestudios",
+  brand = "Solenne Systems",
   ctaHref = "/#inquiry",
   ctaLabel = "Start Your Project",
   mobileCtaLabel = "Inquire",
